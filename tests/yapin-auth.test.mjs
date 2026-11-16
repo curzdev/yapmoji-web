@@ -61,8 +61,8 @@ test('logout origin validation supports proxied localhost and rejects foreign or
     hasSameOrigin(new Request('http://internal/api/auth/logout', {
       method: 'POST',
       headers: {
-        origin: 'https://yapmoji.netlify.app',
-        host: 'yapmoji.netlify.app',
+        origin: 'https://yapmoji.vercel.app',
+        host: 'yapmoji.vercel.app',
         'x-forwarded-proto': 'https',
       },
     })),
@@ -89,7 +89,7 @@ test('PKCE challenge is the base64url S256 digest', () => {
 
 test('callback URL defaults to localhost in development and production URL in production', () => {
   assert.equal(getYapinCallbackUrl(undefined, 'development'), 'http://localhost:3000/auth/yapin/callback')
-  assert.equal(getYapinCallbackUrl(undefined, 'production'), 'https://yapmoji.netlify.app/auth/yapin/callback')
+  assert.equal(getYapinCallbackUrl(undefined, 'production'), 'https://yapmoji.vercel.app/auth/yapin/callback')
   assert.equal(getYapinCallbackUrl('http://localhost:3000/auth/yapin/callback', 'production'), 'http://localhost:3000/auth/yapin/callback')
   assert.throws(() => getYapinCallbackUrl('https://attacker.example/callback', 'development'))
 })
